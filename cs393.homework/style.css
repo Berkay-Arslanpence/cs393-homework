@@ -1,0 +1,208 @@
+/* General Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #2b2b2b; /* Concrete black background */
+    color: #fff; /* White text color */
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #fff; /* White header text */
+}
+
+/* Dropdowns */
+label {
+    font-weight: bold;
+    margin-right: 10px;
+    color: #fff; /* White label text */
+}
+
+select {
+    margin-bottom: 20px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: #444; /* Dark background */
+    color: #fff; /* White text */
+    border: 1px solid #555; /* Subtle border */
+    border-radius: 5px;
+}
+
+/* Product Container */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Individual Product */
+.product {
+    background: #333; /* Dark card background */
+    border: 1px solid #555; /* Subtle border */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+    width: calc(20% - 20px);
+    text-align: center;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    color: #fff; /* White text color */
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    background-color: #444; /* Slightly lighter hover effect */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+
+.product img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.product h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #fff; /* White text color */
+}
+
+.product p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #bbb; /* Light gray for descriptions */
+}
+
+/* View Details Button */
+.details-btn {
+    text-decoration: none;
+    color: #fff; /* White text */
+    font-weight: bold;
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: 2px solid #007BFF; /* Blue border */
+    border-radius: 5px;
+    background-color: transparent; /* Transparent background */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.details-btn:hover {
+    background-color: #007BFF; /* Blue hover background */
+    color: #fff; /* White text */
+    border-color: #0056b3; /* Darker blue border */
+}
+
+/* Product Details */
+#product-details {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #333; /* Dark background */
+    border: 1px solid #555; /* Subtle border */
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    color: #fff; /* White text */
+    text-align: left;
+}
+
+#product-details img {
+    max-width: 100%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+#product-details h2 {
+    margin: 0 0 15px 0;
+    font-size: 24px;
+    color: #fff; /* White text */
+}
+
+#product-details p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #ccc; /* Light gray text */
+}
+
+#add-to-cart-container {
+    margin: 20px auto;
+    text-align: center; /* Center the content */
+    max-width: 600px; /* Match product details width */
+    background: #333; /* Dark background */
+    border: 1px solid #555; /* Subtle border */
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#add-to-cart-container label {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+#add-to-cart-container #quantity {
+    width: 100px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: #444; /* Dark background */
+    color: #fff; /* White text */
+    border: 1px solid #555; /* Subtle border */
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+#add-to-cart-container button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#add-to-cart-container button:hover {
+    background-color: #0056b3;
+}
+/* Back to Products Button */
+#back-to-products {
+    text-align: center;
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#back-to-products:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product {
+        width: calc(45% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .product {
+        width: calc(100% - 20px);
+    }
+}
