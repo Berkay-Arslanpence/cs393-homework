@@ -1,35 +1,35 @@
 const API_BASE = 'https://dummyjson.com/products';
 
-let selectedCategory = ''; // Track the selected category
-let selectedSort = ''; // Track the selected sorting option
+let selectedCategory = ''; 
+let selectedSort = ''; 
 
-// Fetch and populate categories
+
 async function fetchCategories() {
     try {
         const response = await fetch(`${API_BASE}/categories`);
         const categories = await response.json();
-        console.log('Categories fetched:', categories); // Debugging log
+        console.log('Categories fetched:', categories); 
         populateCategories(categories);
     } catch (error) {
         console.error('Error fetching categories:', error);
     }
 }
 
-// Populate the categories dropdown
+
 function populateCategories(categories) {
     const categoryDropdown = document.getElementById('categories');
-    categoryDropdown.innerHTML = '<option value="">All Categories</option>'; // Reset dropdown
+    categoryDropdown.innerHTML = '<option value="">All Categories</option>'; 
 
     categories.forEach((category) => {
         const option = document.createElement('option');
 
-        // Check if the category is a string or an object
+
         if (typeof category === 'string') {
-            option.value = category; // Use the string directly
-            option.textContent = category.charAt(0).toUpperCase() + category.slice(1).replace(/-/g, ' '); // Format display name
+            option.value = category; 
+            option.textContent = category.charAt(0).toUpperCase() + category.slice(1).replace(/-/g, ' '); 
         } else if (typeof category === 'object' && category.name) {
-            option.value = category.name; // Use the `name` property
-            option.textContent = category.name.charAt(0).toUpperCase() + category.name.slice(1).replace(/-/g, ' '); // Format display name
+            option.value = category.name; 
+            option.textContent = category.name.charAt(0).toUpperCase() + category.name.slice(1).replace(/-/g, ' '); 
         } else {
             console.warn('Unexpected category format:', category);
         }
@@ -38,12 +38,12 @@ function populateCategories(categories) {
     });
 }
 
-// Normalize category names (replace spaces with hyphens)
+
 function normalizeCategoryName(category) {
-    return category.replace(/\s+/g, '-').toLowerCase(); // Replace spaces with hyphens and convert to lowercase
+    return category.replace(/\s+/g, '-').toLowerCase(); 
 }
 
-// Fetch and display products
+
 async function fetchProducts(category = '', sort = '') {
     try {
         let url = `${API_BASE}`;
@@ -52,10 +52,10 @@ async function fetchProducts(category = '', sort = '') {
             url += `/category/${normalizedCategory}`;
         }
 
-        console.log('Fetching from URL:', url); // Log the URL
+        console.log('Fetching from URL:', url); 
         const response = await fetch(url);
         const data = await response.json();
-        console.log('API Response:', data); // Log the API response
+        console.log('API Response:', data); 
 
         let products = data.products || [];
 
@@ -72,10 +72,10 @@ async function fetchProducts(category = '', sort = '') {
     }
 }
 
-// Display products on the page
+
 function displayProducts(products) {
     const productContainer = document.getElementById('products');
-    productContainer.innerHTML = ''; // Clear existing products
+    productContainer.innerHTML = ''; 
 
     if (!products || products.length === 0) {
         productContainer.innerHTML = '<p>No products found for this category.</p>';
@@ -96,17 +96,17 @@ function displayProducts(products) {
         productContainer.appendChild(productDiv);
     });
 
-    console.log('Products rendered successfully.'); // Debugging log
+    console.log('Products rendered successfully.'); 
 }
 
-// Event listener for category selection
+
 document.getElementById('categories').addEventListener('change', (event) => {
-    selectedCategory = event.target.value; // Update selected category
-    console.log('Selected Category:', selectedCategory); // Debugging log
-    fetchProducts(selectedCategory, selectedSort); // Fetch with filters
+    selectedCategory = event.target.value; 
+    console.log('Selected Category:', selectedCategory);
+    fetchProducts(selectedCategory, selectedSort); 
 });
 
-// Event listener for sorting
+
 document.getElementById('sort').addEventListener('change', (event) => {
     const sortValue = event.target.value;
     if (sortValue === 'lowToHigh') {
@@ -114,11 +114,11 @@ document.getElementById('sort').addEventListener('change', (event) => {
     } else if (sortValue === 'highToLow') {
         selectedSort = 'sort=price&order=desc';
     } else {
-        selectedSort = ''; // No sorting
+        selectedSort = ''; 
     }
-    fetchProducts(selectedCategory, selectedSort); // Fetch with filters
+    fetchProducts(selectedCategory, selectedSort); 
 });
 
-// Initial data fetch on page load
+
 fetchCategories();
 fetchProducts();
