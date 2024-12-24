@@ -1,9 +1,8 @@
 const API_BASE = 'https://dummyjson.com/products';
-const CART_API_BASE = 'https://dummyjson.com/carts'; // Correct cart endpoint
+const CART_API_BASE = 'https://dummyjson.com/carts';
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get('id');
 
-// Fetch Product Details
 async function fetchProductDetails() {
     try {
         const response = await fetch(`${API_BASE}/${productId}`);
@@ -17,7 +16,6 @@ async function fetchProductDetails() {
     }
 }
 
-// Display Product Details
 function displayProductDetails(product) {
     const detailsContainer = document.getElementById('product-details');
     detailsContainer.innerHTML = `
@@ -36,7 +34,6 @@ function displayProductDetails(product) {
     `;
 }
 
-// Add to Cart
 document.getElementById('add-to-cart').addEventListener('click', async () => {
     console.log('Add to Cart button clicked');
 
@@ -49,7 +46,7 @@ document.getElementById('add-to-cart').addEventListener('click', async () => {
     }
 
     const cartData = {
-        userId: 1, // Simulated userId
+        userId: 1,
         products: [{ id: Number(productId), quantity: Number(quantity) }]
     };
 
@@ -71,7 +68,6 @@ document.getElementById('add-to-cart').addEventListener('click', async () => {
         const cart = await response.json();
         console.log('Cart Response:', cart);
 
-        // Display Success Message
         const total = cart.total || 0;
         const discountedTotal = cart.discountedTotal || 0;
 
@@ -82,11 +78,9 @@ document.getElementById('add-to-cart').addEventListener('click', async () => {
     }
 });
 
-// Back to Products Button
 document.getElementById('back-to-products').addEventListener('click', () => {
     console.log('Back to Products button clicked');
-    window.location.href = 'Products.html'; // Redirect to the Products page
+    window.location.href = 'Products.html';
 });
 
-// Initial Fetch
 fetchProductDetails();

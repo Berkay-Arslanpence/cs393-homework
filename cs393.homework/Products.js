@@ -2,9 +2,8 @@ const API_BASE = 'https://dummyjson.com/products';
 
 let selectedCategory = ''; 
 let selectedSort = ''; 
-let selectedSearchTerm = ''; // Track search term globally
+let selectedSearchTerm = ''; 
 
-// Fetch Categories
 async function fetchCategories() {
     try {
         const response = await fetch(`${API_BASE}/categories`);
@@ -16,7 +15,6 @@ async function fetchCategories() {
     }
 }
 
-// Populate Categories Dropdown
 function populateCategories(categories) {
     const categoryDropdown = document.getElementById('categories');
     categoryDropdown.innerHTML = '<option value="">All Categories</option>'; 
@@ -38,12 +36,10 @@ function populateCategories(categories) {
     });
 }
 
-// Normalize Category Name
 function normalizeCategoryName(category) {
     return category.replace(/\s+/g, '-').toLowerCase(); 
 }
 
-// Fetch Products (with Search, Category, Sort)
 async function fetchProducts(category = '', sort = '', search = '') {
     try {
         let url = `${API_BASE}`;
@@ -62,7 +58,6 @@ async function fetchProducts(category = '', sort = '', search = '') {
 
         let products = data.products || [];
 
-        // Apply sorting if specified
         if (sort === 'sort=price&order=asc') {
             products = products.sort((a, b) => a.price - b.price);
         } else if (sort === 'sort=price&order=desc') {
@@ -75,10 +70,9 @@ async function fetchProducts(category = '', sort = '', search = '') {
     }
 }
 
-// Handle Search Button Click
 document.getElementById('search-btn').addEventListener('click', async () => {
     selectedSearchTerm = document.getElementById('search-bar').value.trim();
-    selectedCategory = ''; // Reset category
+    selectedCategory = ''; 
     console.log('Search Term:', selectedSearchTerm);
 
     if (!selectedSearchTerm) {
@@ -89,7 +83,6 @@ document.getElementById('search-btn').addEventListener('click', async () => {
     fetchProducts('', selectedSort, selectedSearchTerm);
 });
 
-// Display Products
 function displayProducts(products) {
     const productContainer = document.getElementById('products');
     productContainer.innerHTML = ''; 
@@ -116,12 +109,10 @@ function displayProducts(products) {
     console.log('Products rendered successfully.'); 
 }
 
-// Handle Category Selection
 document.getElementById('categories').addEventListener('change', (event) => {
     selectedCategory = event.target.value; 
     console.log('Selected Category:', selectedCategory);
 
-    // Clear search term if a category is selected
     if (selectedCategory) {
         selectedSearchTerm = '';
         document.getElementById('search-bar').value = '';
@@ -130,7 +121,6 @@ document.getElementById('categories').addEventListener('change', (event) => {
     fetchProducts(selectedCategory, selectedSort, selectedSearchTerm);
 });
 
-// Handle Sorting Selection
 document.getElementById('sort').addEventListener('change', (event) => {
     const sortValue = event.target.value;
     if (sortValue === 'lowToHigh') {
@@ -144,6 +134,5 @@ document.getElementById('sort').addEventListener('change', (event) => {
     fetchProducts(selectedCategory, selectedSort, selectedSearchTerm);
 });
 
-// Initial Fetch
 fetchCategories();
 fetchProducts();
