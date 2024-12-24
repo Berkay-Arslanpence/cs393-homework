@@ -72,6 +72,27 @@ async function fetchProducts(category = '', sort = '') {
     }
 }
 
+document.getElementById('search-btn').addEventListener('click', async () => {
+    const searchTerm = document.getElementById('search-bar').value.trim();
+    if (!searchTerm) {
+        alert('Please enter a search term.');
+        return;
+    }
+
+    try {
+        const url = `${API_BASE}/search?q=${encodeURIComponent(searchTerm)}`;
+        console.log('Search URL:', url);
+        const response = await fetch(url);
+        const data = await response.json();
+
+        displayProducts(data.products || []);
+    } catch (error) {
+        console.error('Error during search:', error);
+        alert('Failed to search products. Please try again.');
+    }
+});
+
+
 
 function displayProducts(products) {
     const productContainer = document.getElementById('products');
@@ -113,9 +134,7 @@ document.getElementById('sort').addEventListener('change', (event) => {
         selectedSort = 'sort=price&order=asc';
     } else if (sortValue === 'highToLow') {
         selectedSort = 'sort=price&order=desc';
-    } else {
-        selectedSort = ''; 
-    }
+    } 
     fetchProducts(selectedCategory, selectedSort); 
 });
 
