@@ -90,7 +90,7 @@ function displayProducts(products) {
             <h3>${product.title}</h3>
             <p>${product.description}</p>
             <p>Price: $${product.price}</p>
-            <p>Rating: ${product.rating} (${product.ratingCount || 0})</p>
+            <p>Rating: ${product.rating} (${product.reviews.length || 0})</p>
             <a href="product-detail.html?id=${product.id}" class="details-btn">View Details</a>
         `;
         productContainer.appendChild(productDiv);

@@ -21,12 +21,12 @@ function displayProductDetails(product) {
         <img src="${product.thumbnail}" alt="${product.title}" />
         <h2>${product.title}</h2>
         <p>Price: $${product.price}</p>
-        <p>Rating: ${product.rating} (${product.ratingCount})</p>
+        <p>Rating: ${product.rating} (${product.reviews.length})</p>
         <p>Brand: ${product.brand}</p>
         <p>Weight: ${product.weight || 'N/A'}</p>
-        <p>Dimensions: ${product.dimensions || 'N/A'}</p>
-        <p>Warranty: ${product.warranty || 'N/A'}</p>
-        <p>Shipping Info: ${product.shipping || 'N/A'}</p>
+        <p>Dimensions: ${product.dimensions.width + " x " + product.dimensions.height + " x " + product.dimensions.depth || 'N/A'}</p>
+        <p>Warranty: ${product.warrantyInformation || 'N/A'}</p>
+        <p>Shipping Info: ${product.shippingInformation || 'N/A'}</p>
         <p>Availability: ${product.stock > 0 ? 'In Stock' : 'Out of Stock'}</p>
         <p>Return Policy: ${product.returnPolicy || 'N/A'}</p>
         <p>Minimum Order: ${product.minOrder || 1}</p>
