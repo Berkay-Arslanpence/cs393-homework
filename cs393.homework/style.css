@@ -29,6 +29,7 @@ label {
 }
 
 select {
+    margin-bottom: 20px;
     padding: 8px;
     font-size: 16px;
     background-color: #444;
@@ -190,6 +191,21 @@ select {
     border-radius: 5px;
     text-align: center;
     margin-right: 10px;
+}
+#add-to-cart-container button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#add-to-cart-container button:hover {
+    background-color: #0056b3;
 }
 
 #back-to-products {
