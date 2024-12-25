@@ -30,7 +30,7 @@ function displayProductDetails(product) {
         <p>Shipping Info: ${product.shippingInformation || 'N/A'}</p>
         <p>Availability: ${product.stock > 0 ? 'In Stock' : 'Out of Stock'}</p>
         <p>Return Policy: ${product.returnPolicy || 'N/A'}</p>
-        <p>Minimum Order: ${product.minOrder || 1}</p>
+        <p>Minimum Order: ${product.minimumOrderQuantity || 1}</p>
     `;
 }
 

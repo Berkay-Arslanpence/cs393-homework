@@ -83,7 +83,7 @@ select {
     border: 1px solid #555;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); 
-    width: calc(20% - 20px);
+    width: calc(17% - 20px);
     text-align: center;
     padding: 15px;
     display: flex;
@@ -226,9 +226,9 @@ select {
     background-color: #0056b3;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1020px) {
     .product {
-        width: calc(45% - 20px);
+        width: calc(35% - 20px);
     }
     .controls {
         flex-direction: column;

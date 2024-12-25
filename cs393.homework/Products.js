@@ -51,24 +51,25 @@ async function fetchProducts(category = '', sort = '', search = '') {
             url += `/category/${normalizedCategory}`;
         }
 
+        // Apply sorting directly to the API URL
+        if (sort === 'sort=price&order=asc') {
+            url += `?sortBy=price&order=asc`;
+        } else if (sort === 'sort=price&order=desc') {
+            url += `?sortBy=price&order=desc`;
+        }
+
         console.log('Fetching from URL:', url); 
         const response = await fetch(url);
         const data = await response.json();
         console.log('API Response:', data); 
 
-        let products = data.products || [];
-
-        if (sort === 'sort=price&order=asc') {
-            products = products.sort((a, b) => a.price - b.price);
-        } else if (sort === 'sort=price&order=desc') {
-            products = products.sort((a, b) => b.price - a.price);
-        }
-
+        const products = data.products || [];
         displayProducts(products);
     } catch (error) {
         console.error('Error fetching products:', error);
     }
 }
+
 
 document.getElementById('search-btn').addEventListener('click', async () => {
     selectedSearchTerm = document.getElementById('search-bar').value.trim();
