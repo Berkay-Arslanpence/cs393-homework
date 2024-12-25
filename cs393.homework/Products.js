@@ -43,25 +43,31 @@ function normalizeCategoryName(category) {
 async function fetchProducts(category = '', sort = '', search = '') {
     try {
         let url = `${API_BASE}`;
+        let queryParams = [];
 
-        if (search) {
-            url += `/search?q=${encodeURIComponent(search)}`;
-        } else if (category) {
+        if (category) {
             const normalizedCategory = normalizeCategoryName(category);
             url += `/category/${normalizedCategory}`;
         }
 
-        // Apply sorting directly to the API URL
-        if (sort === 'sort=price&order=asc') {
-            url += `?sortBy=price&order=asc`;
-        } else if (sort === 'sort=price&order=desc') {
-            url += `?sortBy=price&order=desc`;
+        if (search) {
+            url = `${API_BASE}/search?q=${encodeURIComponent(search)}`;
         }
 
-        console.log('Fetching from URL:', url); 
+        if (sort === 'sort=price&order=asc') {
+            queryParams.push('sortBy=price', 'order=asc');
+        } else if (sort === 'sort=price&order=desc') {
+            queryParams.push('sortBy=price', 'order=desc');
+        }
+
+        if (queryParams.length > 0) {
+            url += (url.includes('?') ? '&' : '?') + queryParams.join('&');
+        }
+
+        console.log('Fetching from URL:', url);
         const response = await fetch(url);
         const data = await response.json();
-        console.log('API Response:', data); 
+        console.log('API Response:', data);
 
         const products = data.products || [];
         displayProducts(products);
